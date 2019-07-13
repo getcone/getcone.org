@@ -5,7 +5,7 @@
 	<link rel="icon" type="image/png" sizes="600x600" href="https://storage.hell.sh/assets/cone/icon.png">
 	<meta name="description" content="One intuitive, open-source package manager for all operations systems.">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://cdn.hell.sh/uikit/3.0.3/uikit.css" integrity="sha384-lFY28ULhQ2AiqfvriJizDVK5iE52SU+KE2vWYnl8GiWLYrFdwK15ausceZU7vY+K" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdn.hell.sh/uikit/3.1.6/uikit.css" integrity="sha384-OFIuEs9GvGHcR2AoglU21pZy/QYL3UEW7frXLbC60Ef0cXQx/e8hQygD4q+vURCM" crossorigin="anonymous">
 </head>
 <body class="uk-margin-left uk-margin-right">
 	<div class="uk-container">
@@ -13,10 +13,41 @@
 			<h1>Cone</h1>
 			<p>One intuitive, <a href="https://github.com/getcone/Cone">open-source</a> package manager for all operations systems.</p>
 			<p>
-				<a class="uk-button uk-button-primary uk-button-large" href="https://code.getcone.org/install.bat" download="Cone Installer.bat">Download for Windows</a> &nbsp; — Mac OS and Linux: <code>wget -qO- https://code.getcone.org/install.sh | sudo bash</code>
+				<a class="uk-button uk-button-primary uk-button-large" href="https://code.getcone.org/install.bat" download="Cone Installer.bat">Download for Windows</a>&nbsp; — Mac OS and Linux: <code>wget -qO- https://code.getcone.org/install.sh | sudo bash</code> <a href="#" class="uk-button uk-button-primary uk-button-small" onclick="copyUnixCommand(event)">Copy</a>
 			</p>
 		</div>
 	</div>
+	<script src="https://cdn.hell.sh/uikit/3.1.6/uikit.js" integrity="sha384-5594bLb9QfSTUj/GdgzHd0R5JlqcTVkLPWBIaT3+W18zzAszgzMOieK0SbbR8ATF" crossorigin="anonymous" async></script>
+	<script>
+		function copyUnixCommand(event)
+		{
+			event.preventDefault();
+			let code = document.querySelector("code"),
+			input = document.createElement("input");
+			input.value = code.textContent;
+			input = document.body.appendChild(input);
+			input.select();
+			if(document.execCommand("copy"))
+			{
+				UIkit.notification({
+					message: "Successfully copied the command.",
+					status: "success",
+					pos: "top-center",
+					timeout: 2000
+				});
+			}
+			else
+			{
+				UIkit.notification({
+					message: "Failed to copy the command.",
+					status: "failure",
+					pos: "top-center",
+					timeout: 2000
+				});
+			}
+			document.body.removeChild(input);
+		}
+	</script>
 </body>
 </body>
 </html>

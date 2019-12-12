@@ -27,6 +27,10 @@
 				{
 					full_display_name = package.name.substr(0, 1).toUpperCase() + package.name.substr(1);
 				}
+				if("homepage" in package)
+				{
+					full_display_name = '<a href="' + package.homepage + '" target="_blank">' + full_display_name + "</a>";
+				}
 				if("version" in package)
 				{
 					full_display_name += " ";

@@ -12,9 +12,11 @@
 		<div class="uk-margin-top uk-margin-bottom">
 			<h1>Cone</h1>
 			<p>One intuitive, <a href="https://github.com/getcone/Cone">open-source</a> package manager for all operations systems.</p>
-			<p>
-				<a class="uk-button uk-button-primary uk-button-large" href="https://code.getcone.org/install.bat" download="Cone Installer.bat">Download for Windows</a>&nbsp; — Mac OS and Linux: <code>wget -qO- https://code.getcone.org/install.sh | sudo bash</code> <a href="#" class="uk-button uk-button-primary uk-button-small" onclick="copyUnixCommand(event)">Copy</a>
-			</p>
+			<p><a class="uk-button uk-button-primary uk-button-large" href="https://code.getcone.org/install.bat" download="Cone Installer.bat">Download for Windows</a></p>
+			<ul>
+				<li>Linux: <code>su --session-command "wget -qO- https://code.getcone.org/install.sh | bash"</code> <a href="#" class="uk-button uk-button-primary uk-button-small" onclick="copyCommand(event)">Copy</a></li>
+				<li>Mac OS: <code>wget -qO- https://code.getcone.org/install.sh | sudo bash</code> <a href="#" class="uk-button uk-button-primary uk-button-small" onclick="copyCommand(event)">Copy</a></li>
+			</ul>
 			<h2>Same everywhere</h2>
 			<p>Whether you're constantly switching between Windows and Unices, or you're a package author explaining how to get your software, Cone always has the same command to get the job done:</p>
 			<img src="/assets/composer.png">
@@ -27,10 +29,10 @@
 	</div>
 	<script src="https://cdn.hell.sh/uikit/3.1.6/uikit.js" integrity="sha384-5594bLb9QfSTUj/GdgzHd0R5JlqcTVkLPWBIaT3+W18zzAszgzMOieK0SbbR8ATF" crossorigin="anonymous" async></script>
 	<script>
-		function copyUnixCommand(event)
+		function copyCommand(event)
 		{
 			event.preventDefault();
-			let code = document.querySelector("code"),
+			var code = event.target.parentNode.querySelector("code"),
 			input = document.createElement("input");
 			input.value = code.textContent;
 			input = document.body.appendChild(input);

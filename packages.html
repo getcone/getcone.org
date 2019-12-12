@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Packages you can "cone get"</title>
+	<link rel="icon" type="image/png" sizes="600x600" href="https://storage.hell.sh/assets/cone/icon.png">
+	<meta name="description" content="Using Cone — the intuitive, open-source package manager you can get these packages on all operating systems.">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdn.hell.sh/uikit/3.2.4/uikit.css" integrity="sha384-43TAZjUGYgKXPl/G3XRuNJ5vH1+h6ygbDBOlzDUnUx4ttMk2sMhlKYliMQOyXBbk" crossorigin="anonymous">
+</head>
+<body class="uk-margin-left uk-margin-right">
+	<div class="uk-container">
+		<div class="uk-margin-top uk-margin-bottom">
+			<h1>Packages you can "cone get"</h1>
+			<p>Using <a href="https://getcone.org">Cone</a> — the intuitive, open-source package manager you can get the following packages on all operating systems:</p>
+			<table class="uk-table uk-table-hover" id="table"></table>
+			<p>...and more using community-created repositories!</p>
+		</div>
+	</div>
+	<script src="https://cdn.hell.sh/jquery/3.4.1/core.js" integrity="sha384-vk5WoKIaW/vJyUAd9n/wmopsmNhiy+L2Z+SBxGYnUkunIxVxAv/UtMOhba/xskxh" crossorigin="anonymous"></script>
+	<script src="https://cdn.hell.sh/uikit/3.2.4/uikit.js" integrity="sha384-AVgZXEZptIoQZfXWT3TlUfvIYaQLwjCyV5Tw08kolMlpfLpKyuhBTOTnoGsu09fT" crossorigin="anonymous"></script>
+	<script src="/copy-command.js"></script>
+	<script>
+		$.ajax("https://repository.getcone.org/main.json").done(repo => {
+			repo.packages.forEach(package => {
+				let full_display_name = package.display_name;
+				if(!full_display_name)
+				{
+					full_display_name = package.name.substr(0, 1).toUpperCase() + package.name.substr(1);
+				}
+				if("version" in package)
+				{
+					full_display_name += " ";
+					if(package.version.indexOf("dev") == -1)
+					{
+						full_display_name += "v";
+					}
+					full_display_name += package.version;
+				}
+				$("#table").append("<tr><td>" + full_display_name + "</td><td><code>cone get " + package.name + '</code> <a href="#" class="uk-button uk-button-small" onclick="copyCommand(event)">Copy</a></td></tr>');
+			});
+		});
+	</script>
+</body>
+</body>
+</html>
